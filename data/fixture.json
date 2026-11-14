@@ -1,0 +1,125 @@
+{
+  "_note": "Trimmed snapshot of the Hostfully archive (Oct 9, 2026), used only when HOSTFULLY_API_KEY is not set. Live builds pull everything from Hostfully.",
+  "properties": [
+    {
+      "uid": "7dff159e-986d-409f-9c42-7a992909525a",
+      "detail": {"name": "Sunset at 65th - 4 BDR OKC (Master)", "bedrooms": 4, "bathrooms": "3", "beds": 5, "area": {"size": 2499, "unitType": "SQUARE_FEET"},
+        "address": {"address": "3632 NW 65th St", "city": "Oklahoma City", "state": "OK", "zipCode": "73116", "countryCode": "US", "latitude": 35.5392866, "longitude": -97.5831019},
+        "pricing": {"dailyRate": 250, "currency": "USD"}, "availability": {"maxGuests": 12, "checkInTimeStart": 16, "checkOutTime": 11, "minimumStay": 1},
+        "webLink": "https://book.hostfully.com/12pointgetaways/property-details/7dff159e-986d-409f-9c42-7a992909525a/Luxury%204BR%20OKC%20Retreat%20w%20Hot%20Tub%20&%20Firepit"},
+      "description": {"name": "Luxury 4BR OKC Retreat w/ Hot Tub & Firepit",
+        "summary": "Unwind in style at this modern 4-bedroom OKC retreat featuring a private hot tub, firepit and spacious living areas just minutes from downtown.\n\n3 king & 2 full beds with premium linens\nGame room with shuffle board & smart TV\n2 chef kitchens, coffee bars, washer/dryers & fast Wi-Fi\nBackyard patio perfect for relaxing & stargazing",
+        "space": "☆☆ BEDROOMS ☆☆\n\nThree bedrooms offer king-sized beds with premium Purple mattresses, and another includes two full-sized memory foam beds. All beds are dressed in pima cotton sheets. The two king suite bedrooms both offer desks and sitting areas.\n\n☆☆ BATHROOMS ☆☆\n\nThree full bathrooms, each with Public Goods shampoo, conditioner and body wash, plus a hairdryer.",
+        "neighbourhood": "8 blocks south of Lake Hefner and the 15-mile walking and running path around the lake. The neighborhood is quiet."},
+      "photos": [
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/4829c6c7-4d8e-4560-b35e-7920fb488b59", "description": "", "displayOrder": 0},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/613056d5-755b-4a53-857e-8996970ecd45", "description": "", "displayOrder": 1},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/559b69e0-6b34-4ef8-b78d-70d6f6395413", "description": "", "displayOrder": 2},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/45efa300-6d41-4f73-a4bb-eafeb2dd3bd4", "description": "", "displayOrder": 3},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/43ca46db-0d93-40fa-b2f6-d7cfd1e2e3f0", "description": "", "displayOrder": 4}
+      ],
+      "amenities": ["HAS_HOT_TUB", "HAS_FIRE_PIT", "HAS_POOL_TABLE", "HAS_INDOOR_FIREPLACE", "HAS_RECORD_PLAYER", "HAS_BOARD_GAMES", "HAS_OFFICE", "HAS_WIFI_SPEED_500", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_PACK_N_PLAY_TRAVEL_CRIB", "HAS_BABY_HIGH_CHAIR", "HAS_FENCED_YARD", "HAS_SINGLE_LEVEL", "HAS_SMART_TV", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_SMOKE_DETECTOR", "HAS_CARBON_MONOXIDE_DETECTOR"],
+      "rules": [{"rule": "IS_FAMILY_FRIENDLY"}]
+    },
+    {
+      "uid": "788edebe-714a-4bd0-aec2-7d03ab65849a",
+      "detail": {"name": "Stratford - 4 BDR OKC ", "bedrooms": 4, "bathrooms": "2.5", "beds": 5, "area": {"size": 2526, "unitType": "SQUARE_FEET"},
+        "address": {"address": "11937 Stratford Drive", "city": "Oklahoma City", "state": "OK", "zipCode": "73120", "countryCode": "US", "latitude": 35.5922553, "longitude": -97.5540627},
+        "pricing": {"dailyRate": 175, "currency": "USD"}, "availability": {"maxGuests": 10, "checkInTimeStart": 16, "checkOutTime": 11, "minimumStay": 1},
+        "webLink": "https://book.hostfully.com/12-point-getaways/property-details/788edebe-714a-4bd0-aec2-7d03ab65849a/new-4-bdr-okc-hot-tub--pool-table-12-point-getaway"},
+      "description": {"name": "Luxury 4BR OKC Retreat w/ Hot Tub & Pool Table",
+        "summary": "Unwind in style at this modern 4-bedroom OKC retreat featuring a private hot tub, pool table and spacious living areas just minutes from downtown.\n2 king & 3 queen beds with premium linens\nGame room with full-size pool table & smart TV\nChef's kitchen, coffee bar & fast Wi-Fi\nBackyard patio perfect for relaxing & stargazing",
+        "space": "☆☆ BEDROOMS ☆☆\n\nTwo bedrooms offer king-sized beds with premium Purple mattresses, one bedroom provides a queen-sized memory foam bed, and another includes two queen-sized memory foam beds. All beds are dressed in pima cotton sheets, in this single-level Oklahoma City home.\n\n☆☆ BATHROOMS ☆☆\n\nTwo full and one half bathrooms, each with Public Goods shampoo, conditioner and body wash, plus a hairdryer.",
+        "neighbourhood": "The neighborhood is quiet. If you like a leisurely stroll or a morning run, this is a great spot for you."},
+      "photos": [
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/5c080cfd-e405-4a59-bb68-5713c29c0267", "description": "Private backyard retreat with a hot tub", "displayOrder": 0},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/5b6e520a-d3cc-4e83-8d02-11f059bc2492", "description": "Living room with bold colors and plush seating", "displayOrder": 1},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/0d261ae5-d672-4970-b9e3-9f9c858240d5", "description": "Game room with pool table, shuffleboard and bar seating", "displayOrder": 2},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/dc78036f-e380-4854-9179-05f7af8e8eb2", "description": "Dining room with a floral accent wall", "displayOrder": 3},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/761517f7-ac50-431b-bbd7-8d7ba84b85e0", "description": "Open kitchen with room to cook together", "displayOrder": 4}
+      ],
+      "amenities": ["HAS_HOT_TUB", "HAS_POOL_TABLE", "HAS_INDOOR_FIREPLACE", "HAS_RECORD_PLAYER", "HAS_BOARD_GAMES", "HAS_OFFICE", "HAS_WIFI_SPEED_250", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_PACK_N_PLAY_TRAVEL_CRIB", "HAS_BABY_HIGH_CHAIR", "HAS_TV", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_RAIN_SHOWER", "HAS_SMOKE_DETECTOR", "HAS_CARBON_MONOXIDE_DETECTOR"],
+      "rules": [{"rule": "IS_FAMILY_FRIENDLY"}]
+    },
+    {
+      "uid": "2e9a42f7-eeed-4cf3-b8d3-19f0b2da3eb6",
+      "detail": {"name": "Sunset at 65th - 3 BDR OKC - A", "bedrooms": 3, "bathrooms": "2", "beds": 4, "area": {"size": 1830, "unitType": "SQUARE_FEET"},
+        "address": {"address": "3632 NW 65th St", "city": "Oklahoma City", "state": "OK", "zipCode": "73116", "countryCode": "US", "latitude": 35.5392866, "longitude": -97.5831019},
+        "pricing": {"dailyRate": 225, "currency": "USD"}, "availability": {"maxGuests": 8, "checkInTimeStart": 16, "checkOutTime": 11, "minimumStay": 1},
+        "webLink": "https://book.12pointgetaways.com/property-details/2e9a42f7-eeed-4cf3-b8d3-19f0b2da3eb6/luxury-3-bdr-okc-hot-tub%2C-firepit%2C-shuffleboard"},
+      "description": {"name": "Luxury 3 BDR OKC Hot Tub, Firepit, Shuffleboard",
+        "summary": "Unwind in style at this modern 3-bedroom duplex in OKC with a private hot tub, firepit and spacious living areas just minutes from downtown.\n2 king & 2 full beds with premium linens\nGame room with shuffle board & smart TV\nChef kitchen, coffee bar, washer/dryer & fast Wi-Fi\nBackyard patio perfect for relaxing & stargazing",
+        "space": "☆☆ BEDROOMS ☆☆\n\nTwo bedrooms offer king-sized beds with premium Purple mattresses, and another includes two full-sized memory foam beds. All beds are dressed in pima cotton sheets. One king suite offers a desk and sitting area.\n\n☆☆ BATHROOMS ☆☆\n\nTwo full bathrooms with Public Goods shampoo, conditioner and body wash, plus a hairdryer.",
+        "neighbourhood": "Located in a quiet small neighborhood minutes from Baptist Hospital, Hwy 74, and plenty of dining. 8 blocks south of Lake Hefner and the 15-mile walking and running path around the lake."},
+      "photos": [
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/28543bd7-5316-4808-970a-b949560b1362", "description": "", "displayOrder": 0},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/5a4022f1-7c29-44ea-a98a-ac0296faa94c", "description": "", "displayOrder": 1},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/2cea0c2a-59c2-41f1-86ae-3ef9d9e59ae0", "description": "", "displayOrder": 2},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/37e2ba86-2adf-4aee-b691-a0ff4a316534", "description": "", "displayOrder": 3},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/ff66c13c-66af-4480-b245-15b6f138c8f6", "description": "", "displayOrder": 4}
+      ],
+      "amenities": ["HAS_HOT_TUB", "HAS_FIRE_PIT", "HAS_POOL_TABLE", "HAS_INDOOR_FIREPLACE", "HAS_BOARD_GAMES", "HAS_OFFICE", "HAS_WIFI_SPEED_500", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_PACK_N_PLAY_TRAVEL_CRIB", "HAS_BABY_HIGH_CHAIR", "HAS_FENCED_YARD", "HAS_SINGLE_LEVEL", "HAS_SMART_TV", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_SMOKE_DETECTOR"],
+      "rules": [{"rule": "ALLOWS_PETS", "description": "Automatically enabled due to pet fee"}]
+    },
+    {
+      "uid": "e30b60b5-94cc-48e2-877e-fa0512e77895",
+      "detail": {"name": "Cozy Nest - 3BDR", "bedrooms": 3, "bathrooms": "2", "beds": 4, "area": {"size": 1282, "unitType": "SQUARE_FEET"},
+        "address": {"address": "636 NW 120th St", "city": "Oklahoma City", "state": "OK", "zipCode": "73114", "countryCode": "US", "latitude": 35.5924421, "longitude": -97.5246154},
+        "pricing": {"dailyRate": 175, "currency": "USD"}, "availability": {"maxGuests": 7, "checkInTimeStart": 16, "checkOutTime": 11, "minimumStay": 1},
+        "webLink": "https://book.12pointgetaways.com/property-details/e30b60b5-94cc-48e2-877e-fa0512e77895/luxury-3br-okc-retreat-w--theatre-%26-gaming"},
+      "description": {"name": "Luxury 3BR OKC Retreat w/ Patio & Gaming",
+        "summary": "Unwind in style at this modern 3-bedroom OKC retreat featuring a theater living room, PlayStation gaming station, and spacious living area just minutes from downtown.\nChef's kitchen, coffee bar, washer/dryer & fast Wi-Fi\nBackyard patio perfect for relaxing & stargazing",
+        "space": "☆☆ BEDROOMS ☆☆\n\nOne bedroom offers a king-sized bed with a premium Helix mattress, the second has a queen-sized Purple mattress, and the third includes two full-sized memory foam beds. A foldable foam queen mattress is available for the living room. All beds have pima cotton sheets.\n\n☆☆ BATHROOMS ☆☆\n\nTwo full bathrooms, one in the hallway and one in the king suite.",
+        "neighbourhood": "1 mile west of Highway 77 / Broadway Extension. Within a couple of minutes of the Chisholm Creek shopping and dining area, home to Topgolf, iFLY, Main Event and Costco."},
+      "photos": [
+        {"largeScaleImageUrl": "https://iac-prod-orbirental-images-bucket.s3.amazonaws.com/a16b8f44-f5c2-441b-bb4e-e572e7a24acd", "description": "", "displayOrder": 0},
+        {"largeScaleImageUrl": "https://iac-prod-orbirental-images-bucket.s3.amazonaws.com/b4767861-7bf9-4406-914e-a228192a3208", "description": "", "displayOrder": 1},
+        {"largeScaleImageUrl": "https://iac-prod-orbirental-images-bucket.s3.amazonaws.com/4c2d863d-088e-4b2e-82db-7eca616eb629", "description": "", "displayOrder": 2},
+        {"largeScaleImageUrl": "https://iac-prod-orbirental-images-bucket.s3.amazonaws.com/5fbecbae-5fc9-4a68-bc01-0d24d758b07c", "description": "", "displayOrder": 3},
+        {"largeScaleImageUrl": "https://iac-prod-orbirental-images-bucket.s3.amazonaws.com/393315ee-fd70-450b-9849-ee155f0bf070", "description": "", "displayOrder": 4}
+      ],
+      "amenities": ["HAS_GAME_CONSOLE", "HAS_SMART_TV", "HAS_BOARD_GAMES", "HAS_OFFICE", "HAS_WIFI_SPEED_500", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_PACK_N_PLAY_TRAVEL_CRIB", "HAS_CHILDRENS_BOOKS_AND_TOYS", "HAS_OUTDOOR_PLAY_AREA", "HAS_FENCED_YARD", "HAS_DECK_PATIO", "HAS_SINGLE_LEVEL", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_SMOKE_DETECTOR"],
+      "rules": [{"rule": "IS_FAMILY_FRIENDLY"}]
+    },
+    {
+      "uid": "b502d577-0668-482d-abeb-9c7eab811132",
+      "detail": {"name": "Arches - 2 BDR OKC", "bedrooms": 2, "bathrooms": "2", "beds": 3, "area": {"size": 1078, "unitType": "SQUARE_FEET"},
+        "address": {"address": "1442 Northwest 41st Street", "city": "Oklahoma City", "state": "OK", "zipCode": "73118", "countryCode": "US", "latitude": 35.5133962, "longitude": -97.5364457},
+        "pricing": {"dailyRate": 85, "currency": "USD"}, "availability": {"maxGuests": 6, "checkInTimeStart": 16, "checkOutTime": 11, "minimumStay": 1},
+        "webLink": "https://book.hostfully.com/12-point-getaways/property-details/b502d577-0668-482d-abeb-9c7eab811132/the-arches-%7C-walk-to-western-ave-district"},
+      "description": {"name": "The Arches | Walk to Western Ave District",
+        "summary": "Discover the allure of The Arches, a beautifully restored 100-year-old 2-bedroom, 2-bathroom home that blends historic charm with modern sophistication. Just 13 minutes from downtown, and minutes from local restaurants, shopping, and attractions. Perfect for couples, small families, travel nurses, or professionals staying for months at a time.",
+        "space": "☆☆ BEDROOMS ☆☆\n\nBoth bedrooms feature a queen-sized bed with a memory foam mattress. A sleeper sofa in the living area adds space for extra guests.\n\n☆☆ BATHROOMS ☆☆\n\nTwo full bathrooms, one in the hallway and one attached to the main bedroom.",
+        "neighbourhood": "The neighborhood is quiet, with plenty of sidewalks along Classen."},
+      "photos": [
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/e4c50bfa-96bc-4fc9-9ea9-c2126ae8aa94", "description": "Light-filled living room with cozy seating", "displayOrder": 0},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/545ec7a4-245d-4e1f-bacc-1d5ee7600150", "description": "Living space with smart TV", "displayOrder": 1},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/2801d333-de83-421e-8a0e-56435a61a7b6", "description": "Fully equipped kitchen with pendant lighting", "displayOrder": 2},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/f3d9febb-53ff-43a2-a23e-edb35b1d8f36", "description": "Backyard firepit with Adirondack seating", "displayOrder": 3},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/5778b9ab-de1c-4b1a-aea7-2ad1f7f49bc7", "description": "Bedroom with blackout curtains", "displayOrder": 4}
+      ],
+      "amenities": ["HAS_FIRE_PIT", "HAS_OFFICE", "HAS_BOARD_GAMES", "HAS_INTERNET_WIFI", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_PACK_N_PLAY_TRAVEL_CRIB", "HAS_SINGLE_LEVEL", "HAS_TV", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_ROOM_DARKENING_SHADES", "HAS_SMOKE_DETECTOR"],
+      "rules": []
+    },
+    {
+      "uid": "a0333464-42f6-4bb5-90e7-23a30515ed2f",
+      "detail": {"name": "Sunset at 65th - 1 BDR OKC - B", "bedrooms": 1, "bathrooms": "1", "beds": 1, "area": {"size": 669, "unitType": "SQUARE_FEET"},
+        "address": {"address": "3632 NW 65th St", "city": "Oklahoma City", "state": "OK", "zipCode": "73116", "countryCode": "US", "latitude": 35.5392866, "longitude": -97.5831019},
+        "pricing": {"dailyRate": 75, "currency": "USD"}, "availability": {"maxGuests": 4, "checkInTimeStart": 16, "checkOutTime": 11, "minimumStay": 2},
+        "webLink": "https://book.12pointgetaways.com/property-details/a0333464-42f6-4bb5-90e7-23a30515ed2f/1-bdr-okc%2C-duplex%2C-5-min-from-baptist-hospital"},
+      "description": {"name": "1 BDR OKC, Duplex, 5 min from Baptist Hospital",
+        "summary": "Unwind in style at this modern 1-bedroom OKC retreat with a spacious living room just minutes from downtown.\n1 king bed & 1 queen sofa sleeper with premium linens\nChef kitchen, coffee bar, washer/dryer, smart TV & fast Wi-Fi\nIdeal for nurses on contract or individuals on work assignments",
+        "space": "☆☆ BEDROOM ☆☆\n\nA king-sized bed with a premium Purple mattress and pima cotton sheets. The suite offers a desk and sitting bench.\n\n☆☆ KITCHEN & LOUNGE ☆☆\n\nA spacious living area with an open floor plan and a kitchen with stainless steel appliances.",
+        "neighbourhood": "Located in a quiet small neighborhood minutes from Baptist Hospital and Hwy 74. 8 blocks south of Lake Hefner and the 15-mile walking and running path around the lake."},
+      "photos": [
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/895ad986-f0c7-45c2-bc44-eac022dba2d0", "description": "", "displayOrder": 0},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/ee745e26-ec26-4124-b48c-cd405b822868", "description": "", "displayOrder": 1},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/0c488943-68b1-4284-bf36-f8ea32d63847", "description": "", "displayOrder": 2},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/a27f0f5d-b6dd-4caa-9146-3c9456e10ab2", "description": "", "displayOrder": 3},
+        {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/cf0cb67a-1767-46ab-8835-cd73dc90777d", "description": "", "displayOrder": 4}
+      ],
+      "amenities": ["HAS_OFFICE", "HAS_WIFI_SPEED_500", "HAS_SMART_TV", "HAS_INDOOR_FIREPLACE", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_FENCED_YARD", "HAS_SINGLE_LEVEL", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_ROOM_DARKENING_SHADES", "HAS_SMOKE_DETECTOR"],
+      "rules": []
+    }
+  ]
+}

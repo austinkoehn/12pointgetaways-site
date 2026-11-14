@@ -1,0 +1,18 @@
+# HOSTFULLY_API_KEY is set in Netlify (Site settings > Environment variables), never in this repo.
+[build]
+  command = "node build/build.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
