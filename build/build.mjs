@@ -309,7 +309,7 @@ function guidesIndex() {
 function llmsTxt() {
   return `# ${site.name}
 
-> ${site.name} rents ${homesData.length} vacation homes in northwest Oklahoma City, Oklahoma. Guests can book direct at ${site.domain} for less than on Airbnb, with instant booking and secure Stripe checkout.
+> ${site.name} rents ${homesData.length} vacation homes in northwest Oklahoma City, Oklahoma. Guests can book direct at ${site.domain} for less than on Airbnb, with secure Stripe checkout.
 
 ## Policies
 - Check-in after 4 PM, checkout by 11 AM
