@@ -56,13 +56,20 @@ function normalize(raw, cfg) {
     bedrooms: d.bedrooms, beds: d.beds, bathrooms: d.bathrooms, guests: a.maxGuests,
     sqft: d.area?.unitType === 'SQUARE_FEET' ? d.area.size : null,
     rate: d.pricing?.dailyRate, checkIn: a.checkInTimeStart, checkOut: a.checkOutTime, minStay: a.minimumStay,
-    address: d.address || {}, bookUrl: d.webLink,
+    address: d.address || {}, bookUrl: brandedBookUrl(d.webLink, raw.uid),
     photos: (raw.photos || []).filter((p) => p.largeScaleImageUrl).map((p) => ({ src: p.largeScaleImageUrl, alt: p.description || '' })),
     summaryLines: summaryLines.slice(1).filter((l) => !/^book now/i.test(l) && !/^ideal for/i.test(l)),
     space: desc.space || '', neighbourhood: desc.neighbourhood || '',
     amenityCount: raw.amenities.filter((c) => c.startsWith('HAS_') || c.startsWith('IS_')).length,
     highlights, namedAmenities: named, pets: !!petRule,
   };
+}
+
+// Hostfully hands back some links on book.hostfully.com and some on our white-labelled book.12pointgetaways.com.
+// Send every guest to the branded one so checkout stays on our domain.
+function brandedBookUrl(webLink, uid) {
+  const tail = String(webLink || '').split(`/property-details/${uid}`)[1];
+  return `https://book.12pointgetaways.com/property-details/${uid}${tail ?? ''}`;
 }
 
 const specs = (h) => [plural(h.bedrooms, 'bedroom'), plural(h.beds, 'bed'), plural(h.bathrooms, 'bath'), `sleeps ${h.guests}`].join(' · ');
