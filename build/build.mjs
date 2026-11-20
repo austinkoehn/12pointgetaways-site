@@ -169,7 +169,7 @@ function homePage() {
 </div>
 </section>
 <section class="wrap trust">
-<span>Lower price than Airbnb</span><span>Instant booking, secure checkout</span><span>Full refund 14+ days before check-in</span><span>Local hosts in OKC</span>
+<span>Lower price than Airbnb</span><span>Secure checkout</span><span>Full refund 14+ days before check-in</span><span>Local hosts in OKC</span>
 </section>
 <section id="stays" class="wrap block">
 <h2>Our homes in Oklahoma City</h2>
@@ -243,7 +243,7 @@ ${h.photos.length > 5 ? `<section id="photos"><h2>All photos</h2><div class="all
 <div class="book-top">${h.rate ? `<span class="book-price"><strong>from ${money(h.rate)}</strong> night</span>` : ''}<span class="badge">Lower than Airbnb</span></div>
 <p class="muted small">Pick your dates on the next screen to see the exact total, including taxes.</p>
 <a class="btn btn-blue btn-lg btn-block" href="${esc(h.bookUrl)}" rel="nofollow">Check dates and book</a>
-<p class="muted small center">Secure checkout by Stripe · Instant booking</p>
+<p class="muted small center">Secure checkout by Stripe</p>
 </aside>
 </div>
 </div>

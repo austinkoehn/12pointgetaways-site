@@ -38,7 +38,7 @@ export const homes = [
     headline: '4-bedroom home with hot tub and pool table in NW Oklahoma City',
     area: 'Stratford Dr, NW Oklahoma City',
     tag: 'Hot tub · pool table',
-    intro: 'Stratford is a single-level, 4-bedroom home in northwest Oklahoma City that sleeps 10. It has a private hot tub, a game room with a full-size pool table, and two king bedrooms with Purple mattresses.',
+    intro: 'Stratford is a single-level, 4-bedroom home in northwest Oklahoma City that sleeps 10. It has 2.5 baths, a private hot tub, a game room with a full-size pool table, and king beds with Purple mattresses.',
     goodFor: ['groups', 'families', 'events'],
     guides: [],
   },
