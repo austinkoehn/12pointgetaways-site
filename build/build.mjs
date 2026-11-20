@@ -44,7 +44,11 @@ function normalize(raw, cfg) {
   const d = raw.detail, a = d.availability || {}, desc = raw.description || {};
   const summaryLines = String(desc.summary || '').split('\n').map((s) => s.trim()).filter(Boolean);
   const highlights = highlightOrder.filter((c) => raw.amenities.includes(c)).slice(0, 6).map((c) => amenityLabels[c]);
-  const named = raw.amenities.filter((c) => amenityLabels[c]).map((c) => amenityLabels[c]);
+  // Curated order (highlights first, then the order of amenityLabels); plain Wi-Fi dropped when a speed is listed.
+  const has = new Set(raw.amenities);
+  if (has.has('HAS_WIFI_SPEED_500') || has.has('HAS_WIFI_SPEED_250')) has.delete('HAS_INTERNET_WIFI');
+  if (has.has('HAS_SMART_TV')) has.delete('HAS_TV');
+  const named = [...new Set([...highlightOrder, ...Object.keys(amenityLabels)])].filter((c) => has.has(c)).map((c) => amenityLabels[c]);
   const petRule = (raw.rules || []).find((r) => r.rule === 'ALLOWS_PETS' && !/not set/i.test(r.description || ''));
   return {
     ...cfg,
