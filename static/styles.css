@@ -1,5 +1,6 @@
 :root{--ink:#2B2B2B;--muted:#555;--line:#E3E3E3;--blue:#1F6FCC;--blue-d:#17569F;--sand:#F3E6D3;--sand-ink:#4A4136;--ph:#EFE7DC}
 *{box-sizing:border-box}
+[hidden]{display:none !important}
 body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);font-size:16px;line-height:1.55;background:#fff}
 img{display:block;max-width:100%}
 a{color:var(--blue)}a:hover{color:var(--blue-d)}
@@ -19,7 +20,7 @@ h2{font-size:26px;margin:0 0 16px}h3{font-size:17px;margin:20px 0 6px}
 .top{border-bottom:1px solid #EBEBEB;background:#fff;position:sticky;top:0;z-index:10}
 .top-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:18px}
-.logo{height:60px;width:auto;max-width:240px;margin-left:-10px;object-fit:contain;object-position:left center}
+.logo{height:48px;width:auto;max-width:240px;object-fit:contain;object-position:left center}
 .nav{display:flex;gap:28px;font-weight:500;font-size:15px}.nav a{color:var(--ink);text-decoration:none}
 /* home */
 .hero{padding-top:28px}
@@ -87,6 +88,12 @@ h2{font-size:26px;margin:0 0 16px}h3{font-size:17px;margin:20px 0 6px}
 .book .orbirental-capture-widget-quote table{border-collapse:collapse;font-size:15px}
 .book .orbirental-capture-widget-quote table>tbody>tr>td{padding:8px 0}
 .book .orbirental-capture-widget-link,.book .orbirental-capture-widget-link a{font-size:14px;color:var(--blue)}
+/* name, email and the widget's own submit are not used: our Book now button continues to the booking page */
+.book .leadWidget > form.orbirental-capture-widget-form > div:has(> input[name=email]),
+.book .leadWidget > form.orbirental-capture-widget-form > div:has(> input[name=name]),
+.book .leadWidget > form.orbirental-capture-widget-form > #widget-submit-button{display:none}
+#book-msg:empty{display:none}
+#book-msg{color:#B3261E;margin:0}
 .pika-single{z-index:30 !important;max-width:calc(100vw - 16px);font-family:inherit}
 .pika-single .is-selected .pika-button{background:var(--blue) !important;box-shadow:none !important}
 .answer{background:#E8F1FB;border-radius:16px;padding:20px 24px;font-size:18px;line-height:1.55;margin:16px 0 8px}
@@ -102,7 +109,7 @@ h2{font-size:26px;margin:0 0 16px}h3{font-size:17px;margin:20px 0 6px}
 .foot .small{padding-bottom:28px}
 @media (max-width:760px){
   .nav{display:none}
-  .logo{height:46px;max-width:180px;margin-left:-8px}
+  .logo{height:40px;max-width:190px}
   .top-in{gap:10px}
   .top-in .btn-dark{padding:0 14px;font-size:14px}
   .hero-media{aspect-ratio:4/3;border-radius:20px}

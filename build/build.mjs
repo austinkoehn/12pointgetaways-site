@@ -87,13 +87,39 @@ function bookingWidget(h) {
     aid: 'ORB-49587220416635719', clickID: null,
   };
   return `<div id="leadWidget" class="hf-widget" data-property="${esc(h.uid)}"><noscript><a class="btn btn-blue btn-lg btn-block" href="${esc(h.bookUrl)}" rel="nofollow">Check dates and book</a></noscript></div>
+<button type="button" id="book-continue" class="btn btn-blue btn-lg btn-block" hidden>Book now</button>
+<p id="book-msg" class="muted small" role="status" aria-live="polite"></p>
 <script src="${HOSTFULLY_WIDGET_ROOT}assets/js/pikaday.js"></script>
 <script src="${HOSTFULLY_WIDGET_ROOT}assets/js/leadCaptureWidget_2.0.js"></script>
 <script>
 (function () {
   var el = document.getElementById('leadWidget');
+  var bookUrl = ${JSON.stringify(h.bookUrl).replace(/</g, '\\u003c')};
+  function fallback() { var a = document.createElement('a'); a.className = 'btn btn-blue btn-lg btn-block'; a.rel = 'nofollow'; a.href = bookUrl; a.textContent = 'Check dates and book'; el.innerHTML = ''; el.appendChild(a); }
   try { if (typeof Widget !== 'function') throw new Error('widget script missing'); new Widget('leadWidget', ${JSON.stringify(h.uid)}, ${JSON.stringify(config)}); }
-  catch (e) { var a = document.createElement('a'); a.className = 'btn btn-blue btn-lg btn-block'; a.rel = 'nofollow'; a.href = ${JSON.stringify(h.bookUrl).replace(/</g, '\\u003c')}; a.textContent = 'Check dates and book'; el.innerHTML = ''; el.appendChild(a); }
+  catch (e) { fallback(); return; }
+  // The widget is used for dates, guests and the live price only. Hostfully's own "Book now" goes through
+  // platform.hostfully.com/book.jsp and lands on the same booking page anyway, after asking for name and email twice.
+  // So our button goes straight to that page with the dates and guests filled in (documented arrival/departure/guests params).
+  var btn = document.getElementById('book-continue');
+  var msg = document.getElementById('book-msg');
+  function val(n) { var f = el.querySelector('[name=' + n + ']'); return f ? String(f.value || '').trim() : ''; }
+  function go() {
+    msg.textContent = '';
+    var a = val('checkIn'), d = val('checkOut'), g = val('guests');
+    var err = el.querySelector('.orbirental-capture-widget-error-dates');
+    var iso = /^\\d{4}-\\d{2}-\\d{2}$/;
+    if (!iso.test(a) || !iso.test(d)) { msg.textContent = 'Pick your check-in and checkout dates first.'; var ci = el.querySelector('[name=checkIn]'); if (ci) ci.focus(); return; }
+    if (err && err.offsetParent !== null && err.textContent.trim()) { msg.textContent = err.textContent.trim(); return; }
+    var u = new URL(bookUrl); u.searchParams.set('arrival', a); u.searchParams.set('departure', d); if (/^\\d+$/.test(g)) u.searchParams.set('guests', g);
+    window.location.href = u.toString();
+  }
+  btn.hidden = false;
+  btn.addEventListener('click', go);
+  el.addEventListener('change', function () { msg.textContent = ''; });
+  el.addEventListener('click', function () { msg.textContent = ''; });
+  // Never submit Hostfully's widget form (Enter key included); use our button instead.
+  el.addEventListener('submit', function (ev) { ev.preventDefault(); ev.stopPropagation(); go(); }, true);
 })();
 </script>`;
 }
@@ -127,7 +153,7 @@ ${schema.map(jsonld).join('\n')}
 </head>
 <body>
 <header class="top"><div class="wrap top-in">
-<a class="brand" href="/" aria-label="${esc(site.name)} home"><img class="logo" src="/logo-12pg-horizontal.png" alt="${esc(site.name)}" width="600" height="160"></a>
+<a class="brand" href="/" aria-label="${esc(site.name)} home"><img class="logo" src="/logo-12pg-horizontal.png" alt="${esc(site.name)}" width="547" height="120"></a>
 <nav class="nav" aria-label="Main"><a href="/#stays">Stays</a><a href="/guides/">OKC guides</a><a href="/#faq">FAQ</a></nav>
 <a class="btn btn-dark" href="/#stays">Book direct</a>
 </div></header>
