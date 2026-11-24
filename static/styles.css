@@ -1,5 +1,6 @@
 :root{--ink:#2B2B2B;--muted:#555;--line:#E3E3E3;--blue:#1F6FCC;--blue-d:#17569F;--sand:#F3E6D3;--sand-ink:#4A4136;--ph:#EFE7DC}
 *{box-sizing:border-box}
+[hidden]{display:none !important}
 body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);font-size:16px;line-height:1.55;background:#fff}
 img{display:block;max-width:100%}
 a{color:var(--blue)}a:hover{color:var(--blue-d)}
@@ -19,7 +20,7 @@ h2{font-size:26px;margin:0 0 16px}h3{font-size:17px;margin:20px 0 6px}
 .top{border-bottom:1px solid #EBEBEB;background:#fff;position:sticky;top:0;z-index:10}
 .top-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:18px}
-.mark{width:36px;height:36px;border-radius:10px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px}
+.logo{height:48px;width:auto;max-width:240px;object-fit:contain;object-position:left center}
 .nav{display:flex;gap:28px;font-weight:500;font-size:15px}.nav a{color:var(--ink);text-decoration:none}
 /* home */
 .hero{padding-top:28px}
@@ -64,11 +65,37 @@ h2{font-size:26px;margin:0 0 16px}h3{font-size:17px;margin:20px 0 6px}
 .know{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 .allphotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
 .allphotos img{aspect-ratio:4/3;object-fit:cover;border-radius:10px;width:100%;background:var(--ph)}
-.book{flex:1 1 320px;max-width:400px;position:sticky;top:90px;border:1px solid #DDD;border-radius:20px;padding:24px;box-shadow:0 6px 20px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:12px}
+.book{scroll-margin-top:90px;flex:1 1 320px;max-width:400px;position:sticky;top:90px;border:1px solid #DDD;border-radius:20px;padding:24px;box-shadow:0 6px 20px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:12px}
 .book-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
 .book-price{font-size:22px}
 .badge{background:#E8F1FB;color:var(--blue-d);font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px}
 .mobile-bar{display:none}
+/* Hostfully booking widget (its own CSS loads after ours, so these selectors are scoped under .book) */
+.book .hf-widget{min-height:180px}
+.book .leadWidget > form.orbirental-capture-widget-form{border:0;padding:0;margin:0 -6px;font-family:inherit;font-size:16px;color:var(--ink)}
+.book .leadWidget > form.orbirental-capture-widget-form > *{padding:6px}
+.book .leadWidget > form.orbirental-capture-widget-form > div.orbirental-capture-widget-wrapper > input,
+.book .leadWidget > form.orbirental-capture-widget-form > div.orbirental-capture-widget-wrapper > select{height:48px;font-size:16px;font-family:inherit;border:1px solid #BDBDBD;border-radius:10px;padding:0 12px;background-color:#fff;color:var(--ink)}
+.book .leadWidget > form.orbirental-capture-widget-form > div.orbirental-capture-widget-wrapper > label{float:none;display:block;font-size:13px;font-weight:600;margin-bottom:4px}
+.book .leadWidget > form.orbirental-capture-widget-form > button{min-height:52px;border-radius:12px;font-size:17px;font-weight:600;font-family:inherit;cursor:pointer;margin:10px 6px 0;width:calc(100% - 12px)}
+.book .leadWidget > form.orbirental-capture-widget-form > button[disabled]{cursor:wait}
+/* our own "from $X night" line is shown above the widget, so hide the widget duplicate */
+.book .leadWidget > form.orbirental-capture-widget-form > .orbirental-capture-widget-price-option{display:none}
+.book .leadWidget > form.orbirental-capture-widget-form > .small{flex:0 1 50%}
+.book .leadWidget > form.orbirental-capture-widget-form > div.orbirental-capture-widget-wrapper.text-left,
+.book .leadWidget > form.orbirental-capture-widget-form > div.orbirental-capture-widget-wrapper.text-right{text-align:left;font-size:13px}
+.book .leadWidget .orbirental-capture-widget-price{font-size:26px}
+.book .orbirental-capture-widget-quote table{border-collapse:collapse;font-size:15px}
+.book .orbirental-capture-widget-quote table>tbody>tr>td{padding:8px 0}
+.book .orbirental-capture-widget-link,.book .orbirental-capture-widget-link a{font-size:14px;color:var(--blue)}
+/* name, email and the widget's own submit are not used: our Book now button continues to the booking page */
+.book .leadWidget > form.orbirental-capture-widget-form > div:has(> input[name=email]),
+.book .leadWidget > form.orbirental-capture-widget-form > div:has(> input[name=name]),
+.book .leadWidget > form.orbirental-capture-widget-form > #widget-submit-button{display:none}
+#book-msg:empty{display:none}
+#book-msg{color:#B3261E;margin:0}
+.pika-single{z-index:30 !important;max-width:calc(100vw - 16px);font-family:inherit}
+.pika-single .is-selected .pika-button{background:var(--blue) !important;box-shadow:none !important}
 .answer{background:#E8F1FB;border-radius:16px;padding:20px 24px;font-size:18px;line-height:1.55;margin:16px 0 8px}
 /* footer */
 .foot{margin-top:88px;background:var(--sand);color:var(--sand-ink)}
@@ -82,6 +109,9 @@ h2{font-size:26px;margin:0 0 16px}h3{font-size:17px;margin:20px 0 6px}
 .foot .small{padding-bottom:28px}
 @media (max-width:760px){
   .nav{display:none}
+  .logo{height:40px;max-width:190px}
+  .top-in{gap:10px}
+  .top-in .btn-dark{padding:0 14px;font-size:14px}
   .hero-media{aspect-ratio:4/3;border-radius:20px}
   .hero-text h1{font-size:34px}
   .ptitle{font-size:25px}
