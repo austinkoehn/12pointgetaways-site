@@ -8,7 +8,12 @@ async function get(path, params = {}) {
   for (const [k, v] of Object.entries(params)) if (v != null && v !== '') u.searchParams.set(k, v);
   for (let attempt = 0; attempt < 4; attempt++) {
     const r = await fetch(u, { headers: { 'X-HOSTFULLY-APIKEY': key, Accept: 'application/json' } });
-    if (r.status === 429 || r.status >= 500) { await new Promise((res) => setTimeout(res, 3000 * (attempt + 1))); continue; }
+    if (r.status === 429 || r.status >= 500) {
+      // Honor Retry-After (seconds) when Hostfully sends it, otherwise back off 3s, 6s, 9s.
+      const ra = Number(r.headers.get('retry-after'));
+      await new Promise((res) => setTimeout(res, ra > 0 ? Math.min(ra, 60) * 1000 : 3000 * (attempt + 1)));
+      continue;
+    }
     if (r.status === 404) return null;
     const text = await r.text();
     if (!r.ok) throw new Error(`Hostfully GET ${path} -> ${r.status}: ${text.slice(0, 200)}`);
@@ -48,29 +53,14 @@ export async function fetchProperties(uids) {
       photos: photos.sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999)),
       amenities: (amen?.amenities || []).map((a) => a.amenity),
       rules: rules?.propertyRules || [],
-      ...(await reviewData(uid, detail.property?.name ?? detail.name ?? uid)),
     });
   }
   return properties;
 }
 
-// Reviews (score and source only) and the home's listing links on Airbnb/Vrbo/Booking.com.
-// Optional extras: if Hostfully fails here the build still succeeds and that home simply shows no rating/links.
-async function reviewData(uid, name) {
-  const out = { reviews: null, channelLinks: [] };
-  try {
-    const all = await allPages('/reviews', 'reviews', { propertyUid: uid });
-    out.reviews = all.map((r) => ({ source: r.source, rating: r.rating })); // text deliberately dropped
-    const stats = await get('/reviews/statistics', { propertyUid: uid }).catch(() => null);
-    if (stats?.statistics) console.log(`  ${name}: ${all.length} reviews from Hostfully (Hostfully's own statistics: ${stats.statistics.totalReviewsCount} reviews, average ${stats.statistics.averageRating})`);
-  } catch (e) {
-    console.warn(`Warning: couldn't load reviews for ${name}, its rating is left off: ${e.message}`);
-  }
-  try {
-    const links = await get('/property-channel-links', { propertyUid: uid });
-    out.channelLinks = (links?.propertyChannelLinks || []).map((l) => ({ channel: l.channel, url: l.url }));
-  } catch (e) {
-    console.warn(`Warning: couldn't load listing links for ${name}: ${e.message}`);
-  }
-  return out;
+// Guest reviews for one home (GET /reviews, cursor pages of 100). Keeps only source and rating: review text is never
+// kept or shown (see docs/ratings.md). Throws on API errors; the build catches that and hides the rating.
+export async function fetchReviews(uid) {
+  const reviews = await allPages('/reviews', 'reviews', { propertyUid: uid });
+  return reviews.map((r) => ({ source: r.source, rating: r.rating }));
 }

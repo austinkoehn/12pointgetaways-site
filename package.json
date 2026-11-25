@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node build/build.mjs",
-    "test": "node --test test/signup.test.mjs test/reviews.test.mjs"
+    "test": "node --test test/signup.test.mjs test/ratings.test.mjs"
   },
   "dependencies": {
     "pg": "^8.16.3"
