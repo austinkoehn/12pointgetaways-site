@@ -11,7 +11,7 @@ export const site = {
   email: '',
   googleBusinessProfileUrl: '', // the management company's GBP link
   sameAs: [], // Airbnb / Vrbo / Instagram profile URLs
-  ghlFormAction: '', // 12 Point Homes GHL form endpoint for email signups
+  ghlFormAction: '', // Email signup endpoint. While empty, the footer signup box is hidden. Where signups go (GHL or our own lightweight CRM) is still to be decided.
   cancellation: 'Full refund if you cancel 14 or more days before check-in. 50% refund inside 14 days.',
 };
 

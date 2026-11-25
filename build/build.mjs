@@ -191,15 +191,15 @@ ${schema.map(jsonld).join('\n')}
 ${body}
 </main>
 <footer class="foot"><div class="wrap foot-in">
-<div class="signup">
+${site.ghlFormAction ? `<div class="signup">
 <h2>Get direct-booking deals</h2>
 <p>Open dates and returning-guest rates, a couple of emails a month.</p>
-<form method="post" action="${esc(site.ghlFormAction || '#')}">
+<form method="post" action="${esc(site.ghlFormAction)}">
 <label class="sr" for="email">Email address</label>
 <input id="email" name="email" type="email" required placeholder="you@email.com" autocomplete="email">
 <button class="btn btn-dark" type="submit">Sign up</button>
 </form>
-</div>
+</div>` : ''}
 <div class="foot-links">
 <div><h2>Stays</h2>${homesData.map((h) => `<a href="${h.url}">${esc(h.name)}</a>`).join('')}</div>
 <div><h2>More</h2><a href="/guides/">OKC guides</a>${Object.entries(stayTypes).map(([k, v]) => `<a href="/stays/for/${k}/">${esc(v.label)}</a>`).join('')}<a href="/#faq">FAQ</a></div>
