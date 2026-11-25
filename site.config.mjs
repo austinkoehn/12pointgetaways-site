@@ -16,11 +16,13 @@ export const site = {
 };
 
 // The six homes on the site, in the order shown. Anything not listed here stays off the site.
+// petFee = pet fee in dollars per pet per stay, shown next to Book now; 0 means no pets. Set by Austin (Nov 24).
 // intro = the first paragraph on the page: a short, factual answer written for Google and AI assistants.
 export const homes = [
   {
     uid: '7dff159e-986d-409f-9c42-7a992909525a',
     slug: 'sunset-at-65th-whole-house',
+    petFee: 50,
     seoTitle: 'Sunset at 65th: 4BR OKC Rental, Hot Tub, Sleeps 12',
     name: 'Sunset at 65th: Whole House',
     headline: '4-bedroom home with hot tub and firepit near Lake Hefner, sleeps 12',
@@ -33,6 +35,7 @@ export const homes = [
   {
     uid: '788edebe-714a-4bd0-aec2-7d03ab65849a',
     slug: 'stratford-4br-hot-tub-pool-table',
+    petFee: 50,
     seoTitle: 'Stratford: 4BR OKC Rental with Hot Tub & Pool Table',
     name: 'Stratford',
     headline: '4-bedroom home with hot tub and pool table in NW Oklahoma City',
@@ -45,6 +48,7 @@ export const homes = [
   {
     uid: '2e9a42f7-eeed-4cf3-b8d3-19f0b2da3eb6',
     slug: 'sunset-at-65th-unit-a',
+    petFee: 50,
     seoTitle: 'Sunset at 65th Unit A: 3BR OKC Duplex with Hot Tub',
     name: 'Sunset at 65th: Unit A',
     headline: '3-bedroom duplex with hot tub and firepit near Lake Hefner',
@@ -57,6 +61,7 @@ export const homes = [
   {
     uid: 'e30b60b5-94cc-48e2-877e-fa0512e77895',
     slug: 'cozy-nest-3br-theater-gaming',
+    petFee: 50,
     seoTitle: 'Cozy Nest: 3BR OKC Rental near Chisholm Creek',
     name: 'Cozy Nest',
     headline: '3-bedroom home with theater room and gaming near Chisholm Creek',
@@ -69,6 +74,7 @@ export const homes = [
   {
     uid: 'b502d577-0668-482d-abeb-9c7eab811132',
     slug: 'the-arches-2br-western-ave',
+    petFee: 30,
     seoTitle: 'The Arches: 2BR Historic Home near Western Ave, OKC',
     name: 'The Arches',
     headline: 'Restored 100-year-old 2-bedroom home near the Western Ave District',
@@ -81,6 +87,7 @@ export const homes = [
   {
     uid: 'a0333464-42f6-4bb5-90e7-23a30515ed2f',
     slug: 'sunset-at-65th-unit-b',
+    petFee: 0,
     seoTitle: 'Unit B: 1BR OKC Rental 5 Min from Baptist Hospital',
     name: 'Sunset at 65th: Unit B',
     headline: '1-bedroom duplex 5 minutes from Baptist Hospital',

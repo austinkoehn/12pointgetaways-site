@@ -154,6 +154,20 @@ function bookingWidget(h) {
 </script>`;
 }
 
+// Pets. Guests add pets (up to 4) at Hostfully's checkout, where the per-pet fee is charged (Pet Services in Hostfully).
+// petFee comes from site.config.mjs and is shown here only; without it, fall back to Hostfully's rule.
+const hasPetFee = (h) => typeof h.petFee === 'number';
+function petRuleLine(h) {
+  if (hasPetFee(h)) return h.petFee > 0 ? `Pets allowed, ${money(h.petFee)} per pet per stay` : 'No pets';
+  return h.pets ? 'Pets allowed (fee applies)' : 'No pets';
+}
+function petNote(h) {
+  if (!hasPetFee(h)) return '';
+  return h.petFee > 0
+    ? `<p class="muted small center pet-note">Bringing pets? Add them at checkout, up to 4 pets. ${money(h.petFee)} per pet per stay.</p>`
+    : '<p class="muted small center pet-note">Sorry, no pets at this home.</p>';
+}
+
 const specs = (h) => [plural(h.bedrooms, 'bedroom'), plural(h.beds, 'bed'), plural(h.bathrooms, 'bath'), `sleeps ${h.guests}`].join(' · ');
 const altFor = (h, p, i) => p.alt || `${h.name}, photo ${i + 1}`;
 
@@ -314,7 +328,7 @@ ${h.amenityCount > h.namedAmenities.length ? `<p class="muted">Plus ${h.amenityC
 <section><h2>Location</h2><p>${esc(h.area)}, ${esc(h.address.city || site.city)}, ${esc(h.address.state || site.region)}. ${esc(h.neighbourhood)}</p>
 ${guideLinks.length ? `<p>${guideLinks.map((g) => `<a href="/guides/${g.slug}/">Guide: staying near ${esc(g.place)}</a>`).join(' · ')}</p>` : ''}</section>
 <section><h2>Things to know</h2><div class="grid know">
-<div><h3>House rules</h3><p class="muted">Check-in after ${hour(h.checkIn)}<br>Checkout by ${hour(h.checkOut)}${h.minStay > 1 ? `<br>${h.minStay}-night minimum` : ''}<br>No smoking or parties${h.pets ? '<br>Pets allowed (fee applies)' : ''}</p></div>
+<div><h3>House rules</h3><p class="muted">Check-in after ${hour(h.checkIn)}<br>Checkout by ${hour(h.checkOut)}${h.minStay > 1 ? `<br>${h.minStay}-night minimum` : ''}<br>No smoking or parties<br>${petRuleLine(h)}</p></div>
 <div><h3>Booking</h3><p class="muted">Quick ID check and rental agreement by email after you book.<br>${esc(site.cancellation)}</p></div>
 </div></section>
 <section><h2>Questions about ${esc(h.name)}</h2>${faq.map((f) => `<h3>${esc(f.q)}</h3><p class="muted">${esc(f.a)}</p>`).join('')}</section>
@@ -325,6 +339,7 @@ ${h.photos.length > 5 ? `<section id="photos"><h2>All photos</h2><div class="all
 <div class="book-top">${h.rate ? `<span class="book-price"><strong>from ${money(h.rate)}</strong> night</span>` : ''}<span class="badge">Lower than Airbnb</span></div>
 <p class="muted small">Pick your dates and guests to see the full price, including fees and taxes.</p>
 ${bookingWidget(h)}
+${petNote(h)}
 <p class="muted small center">Secure checkout by Stripe. <a href="${esc(h.bookUrl)}" rel="nofollow">Trouble with dates? Use our booking page.</a></p>
 </aside>
 </div>
