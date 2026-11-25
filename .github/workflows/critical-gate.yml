@@ -119,5 +119,5 @@ jobs:
               sys.exit(0)
           print(f"::error::Critical PR. Needs Austin's approval: an APPROVED review by {os.environ['APPROVER_LOGIN']} "
                 f"on head {head[:7]} containing 'AUSTIN-APPROVED: <link>'. Elon runs "
-                f"/workspace/scripts/approve-critical.py {REPO} {N} <link> after Austin says 'approve and deploy'.")
+                f"/workspace/scripts/approve-critical.py {REPO.split('/')[1]} {N} <link> --head {head[:7]} after Austin says 'approve and deploy'.")
           sys.exit(1)
