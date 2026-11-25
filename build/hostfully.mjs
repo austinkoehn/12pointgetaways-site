@@ -48,7 +48,29 @@ export async function fetchProperties(uids) {
       photos: photos.sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999)),
       amenities: (amen?.amenities || []).map((a) => a.amenity),
       rules: rules?.propertyRules || [],
+      ...(await reviewData(uid, detail.property?.name ?? detail.name ?? uid)),
     });
   }
   return properties;
+}
+
+// Reviews (score and source only) and the home's listing links on Airbnb/Vrbo/Booking.com.
+// Optional extras: if Hostfully fails here the build still succeeds and that home simply shows no rating/links.
+async function reviewData(uid, name) {
+  const out = { reviews: null, channelLinks: [] };
+  try {
+    const all = await allPages('/reviews', 'reviews', { propertyUid: uid });
+    out.reviews = all.map((r) => ({ source: r.source, rating: r.rating })); // text deliberately dropped
+    const stats = await get('/reviews/statistics', { propertyUid: uid }).catch(() => null);
+    if (stats?.statistics) console.log(`  ${name}: ${all.length} reviews from Hostfully (Hostfully's own statistics: ${stats.statistics.totalReviewsCount} reviews, average ${stats.statistics.averageRating})`);
+  } catch (e) {
+    console.warn(`Warning: couldn't load reviews for ${name}, its rating is left off: ${e.message}`);
+  }
+  try {
+    const links = await get('/property-channel-links', { propertyUid: uid });
+    out.channelLinks = (links?.propertyChannelLinks || []).map((l) => ({ channel: l.channel, url: l.url }));
+  } catch (e) {
+    console.warn(`Warning: couldn't load listing links for ${name}: ${e.message}`);
+  }
+  return out;
 }

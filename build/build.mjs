@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site, homes, guides, amenityLabels, highlightOrder, stayTypes } from '../site.config.mjs';
 import { fetchProperties } from './hostfully.mjs';
+import { detectScales, summarizeReviews, sourceList, listingLinks } from '../lib/reviews.mjs';
 import { EMAIL_CONSENT_TEXT, SMS_CONSENT_TEXT, MESSAGES } from '../lib/signup-consent.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -63,6 +64,7 @@ function normalize(raw, cfg) {
     space: desc.space || '', neighbourhood: desc.neighbourhood || '',
     amenityCount: raw.amenities.filter((c) => c.startsWith('HAS_') || c.startsWith('IS_')).length,
     highlights, namedAmenities: named, pets: !!petRule,
+    listings: listingLinks(cfg.listings, raw.channelLinks, d.airbnbData?.airbnbId),
   };
 }
 
@@ -262,11 +264,31 @@ const crumbs = (items) => ({ '@context': 'https://schema.org', '@type': 'Breadcr
 const faqSchema = (faq) => ({ '@context': 'https://schema.org', '@type': 'FAQPage',
   mainEntity: faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 
+// ---------- guest rating ----------
+// Combined score across Airbnb, Vrbo, Booking.com and direct reviews (see lib/reviews.mjs). Count and average only.
+// Fixture builds (no Hostfully key) use made-up example reviews, so they are labelled as example data.
+const EXAMPLE_REVIEWS = !process.env.HOSTFULLY_API_KEY;
+const LISTING_NAMES = { airbnb: 'Airbnb', vrbo: 'Vrbo', booking: 'Booking.com' };
+const stars = (r) => r.average.toFixed(2);
+const exampleTag = () => (EXAMPLE_REVIEWS ? ' <span class="rating-example">(example data)</span>' : '');
+// Card and booking box: "★ 4.99 · 120 reviews" (no links: the whole card is already a link)
+function ratingShort(h) {
+  if (!h.rating) return '';
+  return `<span class="rating"><span class="star" aria-hidden="true">★</span> <strong>${stars(h.rating)}</strong> · ${esc(plural(h.rating.count, 'review'))}${exampleTag()}</span>`;
+}
+// Home page, under the title: "★ 4.99 average from 120 guest reviews on Airbnb, Vrbo and Booking.com. See us on: Airbnb · Vrbo"
+function ratingBlock(h) {
+  const links = Object.entries(h.listings || {}).map(([k, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener nofollow">${LISTING_NAMES[k]}</a>`);
+  if (!h.rating && !links.length) return '';
+  const r = h.rating;
+  return `<p class="rating-line">${r ? `<span class="rating"><span class="star" aria-hidden="true">★</span> <strong>${stars(r)}</strong> average from ${esc(plural(r.count, 'guest review'))} on ${esc(sourceList(r.sources))}${exampleTag()}</span>` : ''}${links.length ? `<span class="rating-links">${r ? 'See reviews on' : 'Also listed on'} ${links.join(' · ')}</span>` : ''}</p>`;
+}
+
 function card(h, eager = false) {
   const p = h.photos[0];
   return `<a class="card" href="${h.url}">
 <div class="card-img">${p ? `<img src="${esc(p.src)}" alt="${esc(altFor(h, p, 0))}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">` : ''}<span class="pill">${esc(h.tag)}</span></div>
-<div class="card-body"><span class="card-name">${esc(h.name)}</span><span class="muted">${esc(h.area)}</span><span class="muted">${esc(specs(h))}</span>${h.rate ? `<span class="price"><strong>from ${money(h.rate)}</strong> night</span>` : ''}</div>
+<div class="card-body"><span class="card-name">${esc(h.name)}</span><span class="muted">${esc(h.area)}</span><span class="muted">${esc(specs(h))}</span>${ratingShort(h)}${h.rate ? `<span class="price"><strong>from ${money(h.rate)}</strong> night</span>` : ''}</div>
 </a>`;
 }
 
@@ -341,6 +363,7 @@ function propertyPage(h) {
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/#stays">Oklahoma City stays</a> › ${esc(h.name)}</nav>
 <h1 class="ptitle">${esc(h.name)}: ${esc(h.headline)}</h1>
 <p class="muted">${esc(specs(h))}${h.sqft ? ` · ${h.sqft.toLocaleString('en-US')} sq ft` : ''}</p>
+${ratingBlock(h)}
 <div class="gallery">${g5.map((p, i) => `<img class="${i === 0 ? 'g-big' : 'g-sm'}" src="${esc(p.src)}" alt="${esc(altFor(h, p, i))}" ${i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`).join('')}
 ${h.photos.length > 5 ? `<a class="btn btn-light g-all" href="#photos">Show all ${h.photos.length} photos</a>` : ''}</div>
 <div class="pgrid">
@@ -363,6 +386,7 @@ ${h.photos.length > 5 ? `<section id="photos"><h2>All photos</h2><div class="all
 </div>
 <aside class="book" id="book">
 <div class="book-top">${h.rate ? `<span class="book-price"><strong>from ${money(h.rate)}</strong> night</span>` : ''}<span class="badge">Lower than Airbnb</span></div>
+${h.rating ? `<p class="book-rating small">${ratingShort(h)}</p>` : ''}
 <p class="muted small">Pick your dates and guests to see the full price, including fees and taxes.</p>
 ${bookingWidget(h)}
 <p class="muted small center">Secure checkout by Stripe. <a href="${esc(h.bookUrl)}" rel="nofollow">Trouble with dates? Use our booking page.</a></p>
@@ -460,6 +484,14 @@ const publishedGuides = guides.filter((g) => g.status === 'published');
 
 const raw = await loadData();
 homesData = raw.map((r, i) => normalize(r, homes[i]));
+// One scale per source, worked out from every home's reviews together (see lib/reviews.mjs).
+const reviewScales = detectScales(raw.flatMap((r) => r.reviews || []));
+console.log(`Review scales by source: ${JSON.stringify(reviewScales)}`);
+homesData.forEach((h, i) => {
+  h.rating = summarizeReviews(raw[i].reviews || [], reviewScales);
+  if (!h.rating) console.warn(`Warning: ${h.name} has no rated reviews, so no rating is shown`);
+  else console.log(`  ${h.name}: ${h.rating.average.toFixed(2)} from ${h.rating.count} reviews (${sourceList(h.rating.sources)})`);
+});
 for (const h of homesData) if (!h.photos.length) console.warn(`Warning: ${h.name} has no photos`);
 
 await rm(out, { recursive: true, force: true });

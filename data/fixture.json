@@ -1,5 +1,5 @@
 {
-  "_note": "Trimmed snapshot of the Hostfully archive (Oct 9, 2026), used only when HOSTFULLY_API_KEY is not set. Live builds pull everything from Hostfully.",
+  "_note": "Trimmed snapshot of the Hostfully archive (Oct 9, 2026), used only when HOSTFULLY_API_KEY is not set. Live builds pull everything from Hostfully. The \"reviews\" scores are MADE-UP EXAMPLE DATA (score and source only) so the fixture build shows the rating feature; they are not real reviews, and fixture pages label them \"example data\".",
   "properties": [
     {
       "uid": "7dff159e-986d-409f-9c42-7a992909525a",
@@ -19,7 +19,9 @@
         {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/43ca46db-0d93-40fa-b2f6-d7cfd1e2e3f0", "description": "", "displayOrder": 4}
       ],
       "amenities": ["HAS_HOT_TUB", "HAS_FIRE_PIT", "HAS_POOL_TABLE", "HAS_INDOOR_FIREPLACE", "HAS_RECORD_PLAYER", "HAS_BOARD_GAMES", "HAS_OFFICE", "HAS_WIFI_SPEED_500", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_PACK_N_PLAY_TRAVEL_CRIB", "HAS_BABY_HIGH_CHAIR", "HAS_FENCED_YARD", "HAS_SINGLE_LEVEL", "HAS_SMART_TV", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_SMOKE_DETECTOR", "HAS_CARBON_MONOXIDE_DETECTOR"],
-      "rules": [{"rule": "IS_FAMILY_FRIENDLY"}]
+      "rules": [{"rule": "IS_FAMILY_FRIENDLY"}],
+      "reviews": [{"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 4}, {"source": "AIRBNB", "rating": 4}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "BOOKING_DOT_COM", "rating": 10}, {"source": "BOOKING_DOT_COM", "rating": 10}, {"source": "BOOKING_DOT_COM", "rating": 10}, {"source": "BOOKING_DOT_COM", "rating": 10}, {"source": "BOOKING_DOT_COM", "rating": 10}, {"source": "BOOKING_DOT_COM", "rating": 10}, {"source": "BOOKING_DOT_COM", "rating": 9}, {"source": "BOOKING_DOT_COM", "rating": 9}, {"source": "HOSTFULLY", "rating": 5}, {"source": "HOSTFULLY", "rating": 5}],
+      "channelLinks": []
     },
     {
       "uid": "788edebe-714a-4bd0-aec2-7d03ab65849a",
@@ -39,7 +41,9 @@
         {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/761517f7-ac50-431b-bbd7-8d7ba84b85e0", "description": "Open kitchen with room to cook together", "displayOrder": 4}
       ],
       "amenities": ["HAS_HOT_TUB", "HAS_POOL_TABLE", "HAS_INDOOR_FIREPLACE", "HAS_RECORD_PLAYER", "HAS_BOARD_GAMES", "HAS_OFFICE", "HAS_WIFI_SPEED_250", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_PACK_N_PLAY_TRAVEL_CRIB", "HAS_BABY_HIGH_CHAIR", "HAS_TV", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_RAIN_SHOWER", "HAS_SMOKE_DETECTOR", "HAS_CARBON_MONOXIDE_DETECTOR"],
-      "rules": [{"rule": "IS_FAMILY_FRIENDLY"}]
+      "rules": [{"rule": "IS_FAMILY_FRIENDLY"}],
+      "reviews": [{"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 4}, {"source": "AIRBNB", "rating": 4}, {"source": "AIRBNB", "rating": 4}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}],
+      "channelLinks": []
     },
     {
       "uid": "2e9a42f7-eeed-4cf3-b8d3-19f0b2da3eb6",
@@ -59,7 +63,9 @@
         {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/ff66c13c-66af-4480-b245-15b6f138c8f6", "description": "", "displayOrder": 4}
       ],
       "amenities": ["HAS_HOT_TUB", "HAS_FIRE_PIT", "HAS_POOL_TABLE", "HAS_INDOOR_FIREPLACE", "HAS_BOARD_GAMES", "HAS_OFFICE", "HAS_WIFI_SPEED_500", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_PACK_N_PLAY_TRAVEL_CRIB", "HAS_BABY_HIGH_CHAIR", "HAS_FENCED_YARD", "HAS_SINGLE_LEVEL", "HAS_SMART_TV", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_SMOKE_DETECTOR"],
-      "rules": [{"rule": "ALLOWS_PETS", "description": "Automatically enabled due to pet fee"}]
+      "rules": [{"rule": "ALLOWS_PETS", "description": "Automatically enabled due to pet fee"}],
+      "reviews": [{"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 4}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}],
+      "channelLinks": []
     },
     {
       "uid": "e30b60b5-94cc-48e2-877e-fa0512e77895",
@@ -79,7 +85,9 @@
         {"largeScaleImageUrl": "https://iac-prod-orbirental-images-bucket.s3.amazonaws.com/393315ee-fd70-450b-9849-ee155f0bf070", "description": "", "displayOrder": 4}
       ],
       "amenities": ["HAS_GAME_CONSOLE", "HAS_SMART_TV", "HAS_BOARD_GAMES", "HAS_OFFICE", "HAS_WIFI_SPEED_500", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_PACK_N_PLAY_TRAVEL_CRIB", "HAS_CHILDRENS_BOOKS_AND_TOYS", "HAS_OUTDOOR_PLAY_AREA", "HAS_FENCED_YARD", "HAS_DECK_PATIO", "HAS_SINGLE_LEVEL", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_SMOKE_DETECTOR"],
-      "rules": [{"rule": "IS_FAMILY_FRIENDLY"}]
+      "rules": [{"rule": "IS_FAMILY_FRIENDLY"}],
+      "reviews": [{"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 5}, {"source": "VRBO", "rating": 4}],
+      "channelLinks": []
     },
     {
       "uid": "b502d577-0668-482d-abeb-9c7eab811132",
@@ -99,7 +107,9 @@
         {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/5778b9ab-de1c-4b1a-aea7-2ad1f7f49bc7", "description": "Bedroom with blackout curtains", "displayOrder": 4}
       ],
       "amenities": ["HAS_FIRE_PIT", "HAS_OFFICE", "HAS_BOARD_GAMES", "HAS_INTERNET_WIFI", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_PACK_N_PLAY_TRAVEL_CRIB", "HAS_SINGLE_LEVEL", "HAS_TV", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_ROOM_DARKENING_SHADES", "HAS_SMOKE_DETECTOR"],
-      "rules": []
+      "rules": [],
+      "reviews": [{"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 5}, {"source": "AIRBNB", "rating": 3}],
+      "channelLinks": []
     },
     {
       "uid": "a0333464-42f6-4bb5-90e7-23a30515ed2f",
@@ -119,7 +129,9 @@
         {"largeScaleImageUrl": "https://orbirental-images.s3.amazonaws.com/cf0cb67a-1767-46ab-8835-cd73dc90777d", "description": "", "displayOrder": 4}
       ],
       "amenities": ["HAS_OFFICE", "HAS_WIFI_SPEED_500", "HAS_SMART_TV", "HAS_INDOOR_FIREPLACE", "HAS_FREE_PARKING", "HAS_WASHER", "HAS_DRYER", "HAS_FENCED_YARD", "HAS_SINGLE_LEVEL", "HAS_KITCHEN", "HAS_AIR_CONDITIONING", "HAS_ROOM_DARKENING_SHADES", "HAS_SMOKE_DETECTOR"],
-      "rules": []
+      "rules": [],
+      "reviews": [],
+      "channelLinks": []
     }
   ]
 }

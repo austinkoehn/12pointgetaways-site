@@ -15,6 +15,9 @@ export const site = {
 };
 
 // The six homes on the site, in the order shown. Anything not listed here stays off the site.
+// listings = this home's pages on Airbnb, Vrbo and Booking.com, linked next to its guest rating. Optional: when a
+// box is empty the build uses the channel links set on the home in Hostfully instead, and skips any it can't find.
+// Booking.com lists only the Sunset at 65th whole house, so leave booking empty on Unit A and Unit B.
 // intro = the first paragraph on the page: a short, factual answer written for Google and AI assistants.
 export const homes = [
   {
@@ -28,6 +31,7 @@ export const homes = [
     intro: 'Sunset at 65th is a single-level, 4-bedroom home in northwest Oklahoma City that sleeps 12. It has a private hot tub, a firepit, a game room with shuffleboard and two full kitchens, and sits 8 blocks south of Lake Hefner.',
     goodFor: ['groups', 'families', 'events'],
     guides: ['lake-hefner'],
+    listings: { airbnb: '', vrbo: '', booking: '' },
   },
   {
     uid: '788edebe-714a-4bd0-aec2-7d03ab65849a',
@@ -40,6 +44,7 @@ export const homes = [
     intro: 'Stratford is a single-level, 4-bedroom home in northwest Oklahoma City that sleeps 10. It has 2.5 baths, a private hot tub, a game room with a full-size pool table, and king beds with Purple mattresses.',
     goodFor: ['groups', 'families', 'events'],
     guides: [],
+    listings: { airbnb: '', vrbo: '', booking: '' },
   },
   {
     uid: '2e9a42f7-eeed-4cf3-b8d3-19f0b2da3eb6',
@@ -52,6 +57,7 @@ export const homes = [
     intro: 'Unit A at Sunset at 65th is a 3-bedroom, 2-bath duplex in northwest Oklahoma City that sleeps 8. It has a private hot tub, a firepit and a shuffleboard game room, minutes from Baptist Hospital and 8 blocks south of Lake Hefner.',
     goodFor: ['groups', 'families'],
     guides: ['lake-hefner'],
+    listings: { airbnb: '', vrbo: '', booking: '' },
   },
   {
     uid: 'e30b60b5-94cc-48e2-877e-fa0512e77895',
@@ -64,6 +70,7 @@ export const homes = [
     intro: 'Cozy Nest is a single-level, 3-bedroom home in north Oklahoma City that sleeps 7. It has a theater-style living room and a PlayStation, and it is a couple of minutes from Chisholm Creek, home to Topgolf, iFLY, Main Event and Costco.',
     goodFor: ['families', 'groups'],
     guides: ['chisholm-creek'],
+    listings: { airbnb: '', vrbo: '', booking: '' },
   },
   {
     uid: 'b502d577-0668-482d-abeb-9c7eab811132',
@@ -76,6 +83,7 @@ export const homes = [
     intro: 'The Arches is a restored, 100-year-old 2-bedroom, 2-bath home in Oklahoma City that sleeps 6. It is about 13 minutes from downtown, close to the Western Avenue District, and set up for couples, small families and monthly stays.',
     goodFor: ['nurses', 'families'],
     guides: [],
+    listings: { airbnb: '', vrbo: '', booking: '' },
   },
   {
     uid: 'a0333464-42f6-4bb5-90e7-23a30515ed2f',
@@ -88,6 +96,7 @@ export const homes = [
     intro: 'Unit B at Sunset at 65th is a 1-bedroom duplex in northwest Oklahoma City that sleeps 4, about 5 minutes from Baptist Hospital and 15 minutes from OU Medical. It has a king Purple mattress, a full kitchen and a washer and dryer, and suits nurses on contract.',
     goodFor: ['nurses'],
     guides: ['lake-hefner'],
+    listings: { airbnb: '', vrbo: '', booking: '' },
   },
 ];
 
