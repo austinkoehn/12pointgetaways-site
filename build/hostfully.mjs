@@ -8,7 +8,12 @@ async function get(path, params = {}) {
   for (const [k, v] of Object.entries(params)) if (v != null && v !== '') u.searchParams.set(k, v);
   for (let attempt = 0; attempt < 4; attempt++) {
     const r = await fetch(u, { headers: { 'X-HOSTFULLY-APIKEY': key, Accept: 'application/json' } });
-    if (r.status === 429 || r.status >= 500) { await new Promise((res) => setTimeout(res, 3000 * (attempt + 1))); continue; }
+    if (r.status === 429 || r.status >= 500) {
+      // Honor Retry-After (seconds) when Hostfully sends it, otherwise back off 3s, 6s, 9s.
+      const ra = Number(r.headers.get('retry-after'));
+      await new Promise((res) => setTimeout(res, ra > 0 ? Math.min(ra, 60) * 1000 : 3000 * (attempt + 1)));
+      continue;
+    }
     if (r.status === 404) return null;
     const text = await r.text();
     if (!r.ok) throw new Error(`Hostfully GET ${path} -> ${r.status}: ${text.slice(0, 200)}`);
@@ -51,4 +56,11 @@ export async function fetchProperties(uids) {
     });
   }
   return properties;
+}
+
+// Guest reviews for one home (GET /reviews, cursor pages of 100). Keeps only source and rating: review text is never
+// kept or shown (see docs/ratings.md). Throws on API errors; the build catches that and hides the rating.
+export async function fetchReviews(uid) {
+  const reviews = await allPages('/reviews', 'reviews', { propertyUid: uid });
+  return reviews.map((r) => ({ source: r.source, rating: r.rating }));
 }
