@@ -1,0 +1,29 @@
+# Critical paths for the critical-gate check (Austin approved Nov 25, 2026).
+# A PR that adds, changes, deletes or renames any matching file is CRITICAL: it cannot merge until
+# Austin says "approve and deploy" and Elon records it (approve-critical.py). Everything else is routine
+# and auto-merges after `test` passes and the Elon reviewer app approves.
+# The gate always reads THIS file from main, so a PR cannot loosen its own gate; a change to this
+# file is itself critical.
+# Syntax: one pattern per line, matched against the full path from the repo root (case-insensitive).
+#   *  = any characters except "/"     **/ = any folders (or none)     ** = anything
+#   A pattern with no "/" only matches at the repo root (use **/name for any depth). # = comment.
+#
+# --- Always critical (all repos): workflows, deploy/CI config, this list, secrets ---
+.github/**
+.gitignore
+**/.env*
+**/*secret*
+**/*credential*
+**/*.pem
+**/*.key
+**/*.p12
+
+# --- 12pointgetaways-site (public, guest-facing booking site) ---
+# Netlify build/deploy config and headers
+netlify.toml
+package.json
+package-lock.json
+# Build: Hostfully API key use, booking widget (money), pages
+build/**
+site.config.mjs
+# Routine: static/** (logo, styles), data/fixture.json, README.md
