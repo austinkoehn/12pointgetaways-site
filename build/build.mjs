@@ -154,8 +154,8 @@ function bookingWidget(h) {
 </script>`;
 }
 
-// Pets. Hostfully's booking page has no pet count or pet fee field, so guests put the number of pets in its message box
-// and the fee is added to the reservation afterwards. petFee comes from site.config.mjs; without it, fall back to Hostfully's rule.
+// Pets. Guests add pets (up to 4) at Hostfully's checkout, where the per-pet fee is charged (Pet Services in Hostfully).
+// petFee comes from site.config.mjs and is shown here only; without it, fall back to Hostfully's rule.
 const hasPetFee = (h) => typeof h.petFee === 'number';
 function petRuleLine(h) {
   if (hasPetFee(h)) return h.petFee > 0 ? `Pets allowed, ${money(h.petFee)} per pet per stay` : 'No pets';
@@ -164,7 +164,7 @@ function petRuleLine(h) {
 function petNote(h) {
   if (!hasPetFee(h)) return '';
   return h.petFee > 0
-    ? `<p class="muted small center pet-note">Bringing pets? On the booking page, put how many in the message. ${money(h.petFee)} per pet per stay.</p>`
+    ? `<p class="muted small center pet-note">Bringing pets? Add them at checkout, up to 4 pets. ${money(h.petFee)} per pet per stay.</p>`
     : '<p class="muted small center pet-note">Sorry, no pets at this home.</p>';
 }
 
