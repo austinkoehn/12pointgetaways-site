@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site, homes, guides, amenityLabels, highlightOrder, stayTypes } from '../site.config.mjs';
 import { fetchProperties } from './hostfully.mjs';
+import { EMAIL_CONSENT_TEXT, SMS_CONSENT_TEXT, MESSAGES } from '../lib/signup-consent.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = join(root, 'dist');
@@ -157,6 +158,53 @@ function bookingWidget(h) {
 const specs = (h) => [plural(h.bedrooms, 'bedroom'), plural(h.beds, 'bed'), plural(h.bathrooms, 'bath'), `sleeps ${h.guests}`].join(' · ');
 const altFor = (h, p, i) => p.alt || `${h.name}, photo ${i + 1}`;
 
+// ---------- footer signup ----------
+// Posts to the signup function (netlify/functions/signup.mjs), which saves to the guest list in Supabase.
+// Works without JS (plain form post, the function answers with a small page). With JS it stays on the page.
+// See docs/signup.md.
+function signupBox(path) {
+  return `<div class="signup">
+<h2>Get direct-booking deals</h2>
+<p>Open dates and returning-guest rates, a couple of emails a month.</p>
+<form class="signup-form" method="post" action="/api/signup" novalidate>
+<input type="hidden" name="source" value="${esc(path)}">
+<div class="su-hp" aria-hidden="true"><label for="su-website">Leave this empty</label><input id="su-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<label class="sr" for="su-email">Email address</label>
+<input id="su-email" name="email" type="email" required placeholder="you@email.com" autocomplete="email" maxlength="254">
+<label class="sr" for="su-phone">Mobile phone, optional, for texts</label>
+<input id="su-phone" name="phone" type="tel" placeholder="Mobile (optional, for texts)" autocomplete="tel" inputmode="tel" maxlength="20">
+<label class="su-check"><input type="checkbox" name="email_consent" value="yes"><span>${esc(EMAIL_CONSENT_TEXT)}</span></label>
+<label class="su-check"><input type="checkbox" name="sms_consent" value="yes"><span>${esc(SMS_CONSENT_TEXT)}</span></label>
+<button class="btn btn-dark su-btn" type="submit">Sign up</button>
+<p class="signup-msg" role="status" aria-live="polite"></p>
+</form>
+</div>
+<script>
+(function () {
+  var form = document.querySelector('.signup-form');
+  if (!form || !window.fetch) return;
+  var msg = form.querySelector('.signup-msg'), btn = form.querySelector('.su-btn'), busy = false;
+  var M = ${JSON.stringify({ ok: MESSAGES.ok, error: MESSAGES.error, badEmail: MESSAGES.badEmail, needPhone: MESSAGES.needPhone, needConsent: MESSAGES.needConsent }).replace(/</g, '\\u003c')};
+  function show(text, ok) { msg.textContent = text; msg.className = 'signup-msg ' + (ok ? 'is-ok' : 'is-err'); }
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (busy) return;
+    var email = form.email.value.trim(), phone = form.phone.value.trim();
+    if (!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(email)) return show(M.badEmail, false);
+    if (form.sms_consent.checked && !phone) return show(M.needPhone, false);
+    if (!form.email_consent.checked && !form.sms_consent.checked) return show(M.needConsent, false);
+    busy = true; btn.disabled = true; btn.textContent = 'Signing up…'; show('', true);
+    fetch(form.action, { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString() })
+      .then(function (r) { return r.json().catch(function () { return { ok: false, message: M.error }; }); })
+      .then(function (d) { show(d.message || M.error, !!d.ok); if (d.ok) form.reset(); })
+      .catch(function () { show(M.error, false); })
+      .then(function () { busy = false; btn.disabled = false; btn.textContent = 'Sign up'; });
+  });
+})();
+</script>`;
+}
+
 // ---------- layout ----------
 function layout({ title, description, path, body, schema = [], image, noindex = false }) {
   return `<!doctype html>
@@ -191,15 +239,7 @@ ${schema.map(jsonld).join('\n')}
 ${body}
 </main>
 <footer class="foot"><div class="wrap foot-in">
-<div class="signup">
-<h2>Get direct-booking deals</h2>
-<p>Open dates and returning-guest rates, a couple of emails a month.</p>
-<form method="post" action="${esc(site.ghlFormAction || '#')}">
-<label class="sr" for="email">Email address</label>
-<input id="email" name="email" type="email" required placeholder="you@email.com" autocomplete="email">
-<button class="btn btn-dark" type="submit">Sign up</button>
-</form>
-</div>
+${signupBox(path)}
 <div class="foot-links">
 <div><h2>Stays</h2>${homesData.map((h) => `<a href="${h.url}">${esc(h.name)}</a>`).join('')}</div>
 <div><h2>More</h2><a href="/guides/">OKC guides</a>${Object.entries(stayTypes).map(([k, v]) => `<a href="/stays/for/${k}/">${esc(v.label)}</a>`).join('')}<a href="/#faq">FAQ</a></div>

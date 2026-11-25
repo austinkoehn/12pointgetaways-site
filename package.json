@@ -3,7 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node build/build.mjs"
+    "build": "node build/build.mjs",
+    "test": "node --test test/signup.test.mjs"
+  },
+  "dependencies": {
+    "pg": "^8.16.3"
   },
   "engines": { "node": ">=20" }
 }

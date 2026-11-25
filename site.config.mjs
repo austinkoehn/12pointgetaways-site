@@ -11,7 +11,6 @@ export const site = {
   email: '',
   googleBusinessProfileUrl: '', // the management company's GBP link
   sameAs: [], // Airbnb / Vrbo / Instagram profile URLs
-  ghlFormAction: '', // 12 Point Homes GHL form endpoint for email signups
   cancellation: 'Full refund if you cancel 14 or more days before check-in. 50% refund inside 14 days.',
 };
 

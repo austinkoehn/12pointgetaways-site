@@ -1,7 +1,12 @@
 # HOSTFULLY_API_KEY is set in Netlify (Site settings > Environment variables), never in this repo.
+# Footer signup (netlify/functions/signup.mjs, served at /api/signup): SIGNUP_DATABASE_URL and SIGNUP_ENABLED are
+# also Netlify env vars only. SIGNUP_ENABLED=false or no SIGNUP_DATABASE_URL switches signups off. See docs/signup.md.
 [build]
   command = "node build/build.mjs"
   publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20"
