@@ -159,3 +159,16 @@ export const stayTypes = {
   events: { label: 'Game days and events', blurb: 'OU and OSU weekends, WCWS, Thunder games, concerts.' },
   families: { label: 'Families', blurb: "Pack 'n play, high chairs, board games and full kitchens." },
 };
+
+// Links to each home's listing on the booking sites, shown under its combined rating (see docs/ratings.md).
+// Airbnb comes from Hostfully automatically (the listing id Hostfully syncs), so leave it blank unless it needs
+// overriding. Hostfully doesn't give us Vrbo or Booking.com listing links: paste the full https link from the
+// listing page (e.g. https://www.vrbo.com/1234567 or https://www.booking.com/hotel/us/....html). Blank = no link.
+export const listingLinks = {
+  'sunset-at-65th-whole-house': { airbnb: '', vrbo: '', bookingCom: '' },
+  'stratford-4br-hot-tub-pool-table': { airbnb: '', vrbo: '', bookingCom: '' },
+  'sunset-at-65th-unit-a': { airbnb: '', vrbo: '', bookingCom: '' },
+  'cozy-nest-3br-theater-gaming': { airbnb: '', vrbo: '', bookingCom: '' },
+  'the-arches-2br-western-ave': { airbnb: '', vrbo: '', bookingCom: '' },
+  'sunset-at-65th-unit-b': { airbnb: '', vrbo: '', bookingCom: '' },
+};
