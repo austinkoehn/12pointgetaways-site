@@ -16,9 +16,10 @@ Direct booking site for 12 Point Getaways. Static pages built from Hostfully lis
 - `site.config.mjs` — the six homes, their intros and SEO titles, local guides, amenity labels. Edit this for content changes.
 - `build/build.mjs` — builds `dist/`. With `HOSTFULLY_API_KEY` set it pulls live data from Hostfully (read-only); without it, it uses `data/fixture.json`.
 - `static/styles.css` — the look.
+- `netlify/functions/signup.mjs` + `lib/signup-consent.mjs` — the footer "Get direct-booking deals" signup. Saves to our own guest list in Supabase (`public.guest_signups`, migration in `supabase/migrations/`), parked as `new`, and sends nothing. Off switch: `SIGNUP_ENABLED=false` or no `SIGNUP_DATABASE_URL`. Full details, env vars and rollback: [docs/signup.md](docs/signup.md).
 
-Build locally: `node build/build.mjs`, then open `dist/index.html` through any static server.
+Build locally: `node build/build.mjs`, then open `dist/index.html` through any static server. Tests: `npm test` (see docs/signup.md).
 
-Netlify: build command `node build/build.mjs`, publish `dist`, env var `HOSTFULLY_API_KEY` (never commit it). A nightly build hook keeps listings fresh.
+Netlify: build command `node build/build.mjs`, publish `dist`, functions in `netlify/functions`, env vars `HOSTFULLY_API_KEY`, `SIGNUP_DATABASE_URL`, `SIGNUP_ENABLED` (never commit them). A nightly build hook keeps listings fresh.
 
 Guides only go live when their `status` is `published` and every fact in them has been checked.
