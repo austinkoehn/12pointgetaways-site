@@ -65,7 +65,7 @@ h2{font-size:26px;margin:0 0 16px}h3{font-size:17px;margin:20px 0 6px}
 .know{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 .allphotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
 .allphotos img{aspect-ratio:4/3;object-fit:cover;border-radius:10px;width:100%;background:var(--ph)}
-.book{scroll-margin-top:90px;flex:1 1 320px;max-width:400px;position:sticky;top:90px;border:1px solid #DDD;border-radius:20px;padding:24px;box-shadow:0 6px 20px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:12px}
+.book{scroll-margin-top:90px;flex:1 1 320px;max-width:400px;position:sticky;top:90px;max-height:calc(100vh - 110px);overflow-y:auto;overscroll-behavior:contain;border:1px solid #DDD;border-radius:20px;padding:24px;box-shadow:0 6px 20px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:12px}
 .book-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
 .book-price{font-size:22px}
 .badge{background:#E8F1FB;color:var(--blue-d);font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px}
