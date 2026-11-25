@@ -74,9 +74,13 @@ function brandedBookUrl(webLink, uid) {
 
 
 // Hostfully Booking Widget (Hostfully's public script; no API key in the browser). One widget per page.
-// Every home is on Instant Booking in Hostfully, so the widget shows dates, guests, the full quote and "Book now",
-// which sends the guest to Hostfully's checkout (rental agreement, Stripe, ID check). Without JS, the plain link still works.
+// The widget is used only for dates, guests and the live price. Our own "Book now" opens the home's page on
+// book.12pointgetaways.com with arrival/departure/guests filled in (Hostfully's documented URL params).
+// Resilience: the plain "Check dates and book" link is in the HTML from the start, and Hostfully's scripts load async
+// in the background. The link is swapped for the widget only once the widget has really rendered (its form and date
+// inputs exist). If the scripts are slow, hang, fail, or the widget's data calls fail, the link simply stays.
 const HOSTFULLY_WIDGET_ROOT = 'https://platform.hostfully.com/';
+const WIDGET_TIMEOUT_MS = 8000;
 function bookingWidget(h) {
   const config = {
     type: 'agency', fields: [], showAvailability: true, lang: 'US', minStay: true, price: true,
@@ -86,35 +90,61 @@ function bookingWidget(h) {
     redirectURL: false, showDiscount: true, includeReferrerToRequest: true, customDomainName: null, source: null,
     aid: 'ORB-49587220416635719', clickID: null,
   };
-  return `<div id="leadWidget" class="hf-widget" data-property="${esc(h.uid)}"><noscript><a class="btn btn-blue btn-lg btn-block" href="${esc(h.bookUrl)}" rel="nofollow">Check dates and book</a></noscript></div>
+  const js = (v) => JSON.stringify(v).replace(/</g, '\\u003c');
+  return `<a id="book-fallback" class="btn btn-blue btn-lg btn-block" href="${esc(h.bookUrl)}" rel="nofollow">Check dates and book</a>
+<div id="leadWidget" class="hf-widget" data-property="${esc(h.uid)}" hidden></div>
 <button type="button" id="book-continue" class="btn btn-blue btn-lg btn-block" hidden>Book now</button>
 <p id="book-msg" class="muted small" role="status" aria-live="polite"></p>
-<script src="${HOSTFULLY_WIDGET_ROOT}assets/js/pikaday.js"></script>
-<script src="${HOSTFULLY_WIDGET_ROOT}assets/js/leadCaptureWidget_2.0.js"></script>
 <script>
 (function () {
+  var ROOT = ${js(HOSTFULLY_WIDGET_ROOT)}, UID = ${js(h.uid)}, CONFIG = ${js(config)}, TIMEOUT = ${WIDGET_TIMEOUT_MS};
+  var bookUrl = ${js(h.bookUrl)};
   var el = document.getElementById('leadWidget');
-  var bookUrl = ${JSON.stringify(h.bookUrl).replace(/</g, '\\u003c')};
-  function fallback() { var a = document.createElement('a'); a.className = 'btn btn-blue btn-lg btn-block'; a.rel = 'nofollow'; a.href = bookUrl; a.textContent = 'Check dates and book'; el.innerHTML = ''; el.appendChild(a); }
-  try { if (typeof Widget !== 'function') throw new Error('widget script missing'); new Widget('leadWidget', ${JSON.stringify(h.uid)}, ${JSON.stringify(config)}); }
-  catch (e) { fallback(); return; }
-  // The widget is used for dates, guests and the live price only. Hostfully's own "Book now" goes through
-  // platform.hostfully.com/book.jsp and lands on the same booking page anyway, after asking for name and email twice.
-  // So our button goes straight to that page with the dates and guests filled in (documented arrival/departure/guests params).
+  var link = document.getElementById('book-fallback');
   var btn = document.getElementById('book-continue');
   var msg = document.getElementById('book-msg');
+  var done = false;
+
+  // Keep (or go back to) the plain link. Used on any failure or timeout.
+  function giveUp() { if (done) return; done = true; el.hidden = true; el.innerHTML = ''; btn.hidden = true; link.hidden = false; }
+  // The widget really rendered: its form and both date inputs exist.
+  function ready() { return !!el.querySelector('form.orbirental-capture-widget-form input[name=checkIn]') && !!el.querySelector('input[name=checkOut]'); }
+  function show() { if (done) return; done = true; link.hidden = true; el.hidden = false; btn.hidden = false; }
+
+  function load(src, next) {
+    var s = document.createElement('script');
+    s.src = src; s.async = true;
+    s.onload = next; s.onerror = giveUp;
+    document.head.appendChild(s);
+  }
+  function init() {
+    if (done) return;
+    try { if (typeof Widget !== 'function' || typeof Pikaday !== 'function') throw new Error('widget script missing'); new Widget('leadWidget', UID, CONFIG); }
+    catch (e) { giveUp(); return; }
+    // The widget builds its form only after its data call (getproperty) answers. Wait for it, up to the timeout.
+    var t0 = Date.now();
+    (function poll() { if (done) return; if (ready()) return show(); if (Date.now() - t0 > TIMEOUT) return giveUp(); setTimeout(poll, 200); })();
+  }
+  var timer = setTimeout(function () { if (!ready()) giveUp(); }, TIMEOUT + 4000);
+  load(ROOT + 'assets/js/pikaday.js', function () { load(ROOT + 'assets/js/leadCaptureWidget_2.0.js', init); });
+
   function val(n) { var f = el.querySelector('[name=' + n + ']'); return f ? String(f.value || '').trim() : ''; }
+  function nights(a, d) { var x = Date.parse(a + 'T00:00:00Z'), y = Date.parse(d + 'T00:00:00Z'); return Math.round((y - x) / 86400000); }
+  function minStay() { var m = el.querySelector('.minimum-stay-span'); var n = m ? parseInt(m.textContent, 10) : NaN; return n > 0 ? n : 1; }
   function go() {
     msg.textContent = '';
     var a = val('checkIn'), d = val('checkOut'), g = val('guests');
     var err = el.querySelector('.orbirental-capture-widget-error-dates');
     var iso = /^\\d{4}-\\d{2}-\\d{2}$/;
     if (!iso.test(a) || !iso.test(d)) { msg.textContent = 'Pick your check-in and checkout dates first.'; var ci = el.querySelector('[name=checkIn]'); if (ci) ci.focus(); return; }
+    var n = nights(a, d);
+    if (!(n > 0)) { msg.textContent = 'Checkout has to be after check-in.'; return; }
+    var min = minStay();
+    if (n < min) { msg.textContent = 'Minimum stay is ' + min + ' nights for these dates. Pick a later checkout.'; return; }
     if (err && err.offsetParent !== null && err.textContent.trim()) { msg.textContent = err.textContent.trim(); return; }
     var u = new URL(bookUrl); u.searchParams.set('arrival', a); u.searchParams.set('departure', d); if (/^\\d+$/.test(g)) u.searchParams.set('guests', g);
     window.location.href = u.toString();
   }
-  btn.hidden = false;
   btn.addEventListener('click', go);
   el.addEventListener('change', function () { msg.textContent = ''; });
   el.addEventListener('click', function () { msg.textContent = ''; });
